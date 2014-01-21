@@ -88,7 +88,8 @@ public class SimplePicture implements DigitalPicture
 	 */
 	public SimplePicture(int width, int height)
 	{
-		bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		bufferedImage = new BufferedImage(width, height,
+				BufferedImage.TYPE_INT_RGB);
 		title = "None";
 		fileName = "None";
 		extension = "jpg";
@@ -130,7 +131,8 @@ public class SimplePicture implements DigitalPicture
 			this.title = new String(copyPicture.title);
 		if (copyPicture.bufferedImage != null)
 		{
-			this.bufferedImage = new BufferedImage(copyPicture.getWidth(), copyPicture.getHeight(), BufferedImage.TYPE_INT_RGB);
+			this.bufferedImage = new BufferedImage(copyPicture.getWidth(),
+					copyPicture.getHeight(), BufferedImage.TYPE_INT_RGB);
 			this.copyPicture(copyPicture);
 		}
 	}
@@ -174,10 +176,12 @@ public class SimplePicture implements DigitalPicture
 		Pixel targetPixel = null;
 
 		// loop through the columns
-		for (int sourceX = 0, targetX = 0; sourceX < sourcePicture.getWidth() && targetX < this.getWidth(); sourceX++, targetX++)
+		for (int sourceX = 0, targetX = 0; sourceX < sourcePicture.getWidth()
+				&& targetX < this.getWidth(); sourceX++, targetX++)
 		{
 			// loop through the rows
-			for (int sourceY = 0, targetY = 0; sourceY < sourcePicture.getHeight() && targetY < this.getHeight(); sourceY++, targetY++)
+			for (int sourceY = 0, targetY = 0; sourceY < sourcePicture
+					.getHeight() && targetY < this.getHeight(); sourceY++, targetY++)
 			{
 				sourcePixel = sourcePicture.getPixel(sourceX, sourceY);
 				targetPixel = this.getPixel(targetX, targetY);
@@ -526,7 +530,9 @@ public class SimplePicture implements DigitalPicture
 			file = new File(FileChooser.getMediaPath(this.fileName));
 			if (!file.canRead())
 			{
-				throw new IOException(this.fileName + " could not be opened. Check that you specified the path");
+				throw new IOException(
+						this.fileName
+								+ " could not be opened. Check that you specified the path");
 			}
 		}
 
@@ -552,7 +558,8 @@ public class SimplePicture implements DigitalPicture
 		catch (Exception ex)
 		{
 			System.out.println("There was an error trying to open " + fileName);
-			bufferedImage = new BufferedImage(600, 200, BufferedImage.TYPE_INT_RGB);
+			bufferedImage = new BufferedImage(600, 200,
+					BufferedImage.TYPE_INT_RGB);
 			addMessage("Couldn't load " + fileName, 5, 100);
 			return false;
 		}
@@ -630,7 +637,8 @@ public class SimplePicture implements DigitalPicture
 		scaleTransform.scale(xFactor, yFactor);
 
 		// create a new picture object that is the right size
-		Picture result = new Picture((int) (getWidth() * xFactor), (int) (getHeight() * yFactor));
+		Picture result = new Picture((int) (getWidth() * xFactor),
+				(int) (getHeight() * yFactor));
 
 		// get the graphics 2d object to draw on the result
 		Graphics graphics = result.getGraphics();
@@ -720,7 +728,9 @@ public class SimplePicture implements DigitalPicture
 		// check that you can write to the directory
 		if (!fileLoc.canWrite())
 		{
-			throw new IOException(fileName + " could not be opened. Check to see if you can write to the directory.");
+			throw new IOException(
+					fileName
+							+ " could not be opened. Check to see if you can write to the directory.");
 		}
 
 		// get the extension
@@ -750,7 +760,8 @@ public class SimplePicture implements DigitalPicture
 		}
 		catch (Exception ex)
 		{
-			System.out.println("There was an error trying to write " + fileName);
+			System.out
+					.println("There was an error trying to write " + fileName);
 			ex.printStackTrace();
 			return false;
 		}
@@ -813,7 +824,8 @@ public class SimplePicture implements DigitalPicture
 		maxY = Math.max(maxY, result.getY());
 
 		// create the bounding rectangle to return
-		rect = new Rectangle2D.Double(minX, minY, maxX - minX + 1, maxY - minY + 1);
+		rect = new Rectangle2D.Double(minX, minY, maxX - minX + 1, maxY - minY
+				+ 1);
 		return rect;
 	}
 
@@ -835,7 +847,8 @@ public class SimplePicture implements DigitalPicture
 	 */
 	public String toString()
 	{
-		String output = "Simple Picture, filename " + fileName + " height " + getHeight() + " width " + getWidth();
+		String output = "Simple Picture, filename " + fileName + " height "
+				+ getHeight() + " width " + getWidth();
 		return output;
 	}
 
